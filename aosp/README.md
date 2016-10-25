@@ -17,7 +17,7 @@ docker run --name="aosp" -v /path/to/home:/home -p 22 -d tommylau/aosp
 Enter the root shell by running:
 
 ```
-docker exec -ti aosp bash
+docker exec -ti -u root aosp bash
 ```
 
 And add user account like normally in *nix environment:

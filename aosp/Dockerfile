@@ -25,6 +25,9 @@ RUN apt-get update && apt-get install -y software-properties-common --no-install
 		--no-install-recommends \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Use bash shell instead of dash
+RUN echo "dash dash/sh boolean false" | debconf-set-selections && DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
+
 # All builds will be done by user aosp
 RUN useradd --create-home aosp
 
@@ -35,16 +38,14 @@ VOLUME ["/tmp/ccache", "/home/aosp"]
 # Improve rebuild performance by enabling compiler cache
 ENV USE_CCACHE 1
 ENV CCACHE_DIR /tmp/ccache
+ENV LANG C.UTF-8
 
 # Work in the build directory, repo is expected to be init'd here
 USER aosp
 WORKDIR /home/aosp
 
-# Use bash shell instead of dash
-RUN echo "dash dash/sh boolean false" | debconf-set-selections && DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
-
-ENV LANG C.UTF-8
-
+# SSH Port
 EXPOSE 22
 
+# Start SSH server in foreground
 CMD ["/usr/sbin/sshd", "-D"]
