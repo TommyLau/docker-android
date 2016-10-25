@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y software-properties-common --no-install
 #		lib32stdc++6 \
 		lib32z1-dev \
 		libxml2-utils \
+		openssh-server \
 		oracle-java6-installer \
 		python-networkx \
 		ssh-client \
@@ -29,7 +30,7 @@ RUN useradd --create-home aosp
 
 # The persistent data will be in these two directories, everything else is
 # considered to be ephemeral
-VOLUME ["/tmp/ccache", "/aosp"]
+VOLUME ["/tmp/ccache", "/home/aosp"]
 
 # Improve rebuild performance by enabling compiler cache
 ENV USE_CCACHE 1
@@ -37,4 +38,13 @@ ENV CCACHE_DIR /tmp/ccache
 
 # Work in the build directory, repo is expected to be init'd here
 USER aosp
-WORKDIR /aosp
+WORKDIR /home/aosp
+
+# Use bash shell instead of dash
+RUN echo "dash dash/sh boolean false" | debconf-set-selections && DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
+
+ENV LANG C.UTF-8
+
+EXPOSE 22
+
+CMD ["/usr/sbin/sshd", "-D"]
