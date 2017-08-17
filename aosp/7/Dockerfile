@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 MAINTAINER Tommy Lau <tommy@gen-new.com>
 
 # Install needed packages for building AOSP
-RUN sudo dpkg --add-architecture i386 \
+RUN dpkg --add-architecture i386 \
 	&& apt-get update && apt-get install -y \
 		automake \
 		bison \
@@ -23,6 +23,7 @@ RUN sudo dpkg --add-architecture i386 \
 		lzop \
 		make \
 		maven \
+		openjdk-8-jdk \
 		optipng \
 		pngcrush \
 		python-networkx \
