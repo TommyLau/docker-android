@@ -24,6 +24,7 @@ RUN dpkg --add-architecture i386 \
 		make \
 		maven \
 		openjdk-8-jdk \
+		openssh-server \
 		optipng \
 		pngcrush \
 		python-networkx \
