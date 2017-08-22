@@ -6,6 +6,7 @@ MAINTAINER Tommy Lau <tommy@gen-new.com>
 RUN dpkg --add-architecture i386 \
 	&& apt-get update && apt-get install -y \
 		automake \
+		bc \
 		bison \
 		build-essential \
 		bzip2 \
@@ -13,6 +14,7 @@ RUN dpkg --add-architecture i386 \
 		curl \
 		dpkg-dev \
 		g++-multilib \
+		genisoimage \
 		git \
 		gperf \
 		libbz2-1.0 \
@@ -28,8 +30,11 @@ RUN dpkg --add-architecture i386 \
 		optipng \
 		pngcrush \
 		python-networkx \
+		rsync \
 		schedtool \
 		squashfs-tools \
+		tmux \
+		vim \
 		zip \
 		zlib1g-dev \
 		zlib1g-dev:i386 \
