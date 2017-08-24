@@ -34,6 +34,7 @@ RUN dpkg --add-architecture i386 \
 		schedtool \
 		squashfs-tools \
 		tmux \
+		unzip \
 		vim \
 		zip \
 		zlib1g-dev \
