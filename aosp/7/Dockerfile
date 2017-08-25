@@ -33,6 +33,7 @@ RUN dpkg --add-architecture i386 \
 		rsync \
 		schedtool \
 		squashfs-tools \
+		sudo \
 		tmux \
 		unzip \
 		vim \
